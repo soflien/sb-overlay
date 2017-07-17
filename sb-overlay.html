@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>SB Overlay</title>
+	
+	<!-- Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src="https://use.fontawesome.com/9f883c2fdf.js"></script>
+
+	<!-- Styles -->
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+
+	<!-- JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+			integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+			crossorigin="anonymous"></script>
+    <script type="text/javascript" src="js/settings.js"></script>
+	<script type="text/javascript" src="js/core.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+</head>
+<body>
+	<header>
+		<p id="encTime">0:00</p>
+		<div class="encHeader">
+			<p id="encTitle">No Encounter</p>
+			<p id="encRDPS">0 DPS</p>
+		</div>
+		<div class="overlayMenu">
+			<a href="#" id="overlayBtnSave"><i class="fa fa-floppy-o" aria-hidden="true"></i></a>
+			<a href="#" id="overlayBtnStats"><i class="fa fa-line-chart" aria-hidden="true"></i></a>
+			<a href="#" id="overlayBtnSettings"><i class="fa fa-cogs" aria-hidden="true"></i></a>
+			<a href="#" id="overlayBtnToggleGraph">
+				<i class="fa fa-angle-double-down" id="toggleShowBtn" aria-hidden="true"></i><i class="fa fa-angle-double-up" id="toggleHideBtn" aria-hidden="true"></i>
+			</a>
+		</div>
+		<div class="floatClear"></div>
+	</header>
+	<div id="combatantTables">
+	</div>
+</body>
+</html>
