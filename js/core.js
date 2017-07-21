@@ -503,9 +503,18 @@ class HeliosCore {
 
 		// Generate UI
 		this.clearNode(document.getElementById("combatantTables"));
-		this.generateTables(this.tables);
+        this.generateTables(this.tables);
+        if (this.settings.get("displayTables")) {
+            this.showTables(null);
+        }
+        else {
+            this.hideTables(null);
+        }
 
-		// events
+        // events
+        document.getElementById("toggleShowBtn").addEventListener("click", this.showTables.bind(this));
+        document.getElementById("toggleHideBtn").addEventListener("click", this.hideTables.bind(this));
+        document.getElementById("overlayBtnToggleResize").addEventListener("click", this.toggleResize.bind(this));
         document.addEventListener("onOverlayDataUpdate", this.onOverlayDataUpdate.bind(this));
         try { this.onOverlayDataUpdate({ "detail": ActXiv }); }
         catch (e) {}
@@ -517,12 +526,52 @@ class HeliosCore {
 		document.getElementById("encRDPS").textContent = e.detail.Encounter.dps;
 		
 		this.updateTable(this.tables, e.detail);
-	}
+    }
+
+    toggleResize(e) {
+        let rEnable = this.settings.get("resizeEnabled");
+        if (rEnable) {
+            document.querySelector("html").style.backgroundColor = "transparent";
+        }
+        else {
+            document.querySelector("html").style.backgroundColor = "white";
+        }
+
+        this.settings.set("resizeEnabled", !rEnable);
+    }
+
+    showTables(e) {
+        document.getElementById("toggleShowBtn").style.display = "none";
+        document.getElementById("toggleHideBtn").style.display = "inline-block";
+        document.getElementById("combatantTables").style.display = "block";
+
+        this.settings.set("displayTables", true);
+    }
+
+    hideTables(e) {
+        document.getElementById("combatantTables").style.display = "none";
+        document.getElementById("toggleShowBtn").style.display = "inline-block";
+        document.getElementById("toggleHideBtn").style.display = "none";
+
+        this.settings.set("displayTables", false);
+    }
 
 	clearNode(node) {
 		while (node.firstChild)
 			node.removeChild(node.firstChild);
-	}
+    }
+
+    endEncounter() {
+        try {
+            // Currently crashes.
+            //OverlayPluginApi.endEncounter();
+            window.localStorage.clear();
+        }
+        catch (e) {
+            console.error("The version of OverlayPlugin you are using is outdated and does not support this feature.");
+            console.error("See https://github.com/hibiyasleep/OverlayPlugin/releases for new updates.");
+        }
+    }
 
 	generateTables(tableSettings) {
 		for (let i = 0; i < tableSettings.length; i++) {

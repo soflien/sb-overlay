@@ -60,6 +60,12 @@ div#combatantTables {
     div#combatantTables table tr {
         margin-bottom: 1px;
     }
+
+    div#combatantTables table td {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
     /*
     div#combatantTables table .tank {
         background-color: rgba(66, 66, 183, 0.5);
@@ -78,4 +84,8 @@ div#combatantTables {
 
 .floatClear {
 	clear: both;
+}
+
+.hidden {
+    visibility:hidden;
 }

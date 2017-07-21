@@ -1,5 +1,7 @@
 "use strict";
+var Helios = null;
+
 window.addEventListener("load", () => {
-	var Helios = new HeliosCore();
+	Helios = new HeliosCore();
 	console.log("Bootstrap Complete");
 });
