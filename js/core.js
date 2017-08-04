@@ -534,7 +534,7 @@ class HeliosCore {
             document.querySelector("html").style.backgroundColor = "transparent";
         }
         else {
-            document.querySelector("html").style.backgroundColor = "white";
+            document.querySelector("html").style.backgroundColor = "black";
         }
 
         this.settings.set("resizeEnabled", !rEnable);
