@@ -612,10 +612,13 @@ class HeliosCore {
             // create data
             let maxVal = -9999;
             let combatantData = [];
+            let jobKey = -1;
 			for (let j in data.Combatant) {
 				let pc = [j];
                 for (let k = 0; k < tables[i].cols.length; k++) {
                     let val = data.Combatant[j][tables[i].cols[k].key];
+                    if (tables[i].cols[k].key == "Job")
+                        jobKey = k;
                     if (this.ActCombatantKeys[tables[i].cols[k].key].sorttype == "number") {
                         val *= 1;
                         if (k + 1 == colNum && val > maxVal) {
@@ -646,6 +649,7 @@ class HeliosCore {
                 let row = document.createElement("tr");
                 let selectedColor = "black";
                 let role = jobToRole(data.Combatant[combatantData[j][0]].Job);
+                let job = data.Combatant[combatantData[j][0]].Job;
                 let bgbar = 100;
                 if (this.ActCombatantKeys[tables[i].cols[colNum - 1].key].sorttype == "number") {
                     bgbar = combatantData[j][colNum] / maxVal * 100;
@@ -669,7 +673,14 @@ class HeliosCore {
 
 				for (let k = 1; k < combatantData[j].length; k++) {
                     let cell = document.createElement("td");
-                    cell.textContent = combatantData[j][k];
+                    if (k-1 == jobKey && job.trim().length > 1) {
+                        let img = document.createElement("img");
+                        img.src = `img/${job.toLowerCase()}.png`;
+                        cell.appendChild(img);
+                    }
+                    else {
+                        cell.textContent = combatantData[j][k];
+                    }
                     row.appendChild(cell);
 				}
                 tbl.appendChild(row);

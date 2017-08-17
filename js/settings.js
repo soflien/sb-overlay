@@ -46,7 +46,8 @@ class HeliosSettings {
                 "tank":   "rgba(66, 66, 183, 1)",
                 "healer": "rgba(66, 183, 66, 1)",
                 "dps":    "rgba(183, 66, 66, 1)",
-                "other":  "rgba(128,128,128, 1)"
+                "other":  "rgba(128,128,128, 1)",
+                "you":    "rgba(248,128, 23, 1)"
             },
             "rankBarsThickness": "2px",
             "savedEncounters": [],
